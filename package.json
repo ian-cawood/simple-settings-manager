@@ -1,15 +1,23 @@
 {
   "name": "simple-settings-manager",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "author": "Ian Cawood",
   "license": "MIT",
   "dependencies": {
     "inquirer": "^7.1.0",
     "yargs": "^15.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ian-cawood/simple-settings-manager.git"
+  },
+  "devDependencies": {
+    "semantic-release": "^17.0.7"
   }
 }
