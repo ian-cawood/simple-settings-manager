@@ -22,6 +22,15 @@ jobs:
       - run:
           name: lint
           command: npm run lint
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: test
+          command: npm run test
   release:
     executor: node/default
     steps:
@@ -42,6 +51,9 @@ workflows:
       - lint:
           requires:
             - install-npm-dependencies
+      - test:
+          requires:
+            - install-npm-dependencies
   master:
     jobs:
       - install-npm-dependencies:
@@ -51,6 +63,10 @@ workflows:
       - lint:
           requires:
             - install-npm-dependencies
+      - test:
+          requires:
+            - install-npm-dependencies
       - release:
           requires:
             - lint
+            - test
