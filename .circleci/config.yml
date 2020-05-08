@@ -1,13 +1,16 @@
-version: 2
+version: 2.1
+
+orbs:
+  node: circleci/node@2.1.0
+
 jobs:
   build:
-    docker:
-      - image: 'circleci/node:latest'
+    executor:
+      name: node/default
+      tag: '13'
     steps:
       - checkout
-      - run:
-          name: install
-          command: npm install
+      - node/install-packages
       - run:
           name: release
           command: npm run semantic-release || true
