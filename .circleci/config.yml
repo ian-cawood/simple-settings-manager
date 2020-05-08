@@ -4,12 +4,38 @@ orbs:
   node: circleci/node@2.1.0
 
 jobs:
+  install-npm-dependencies:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - node-modules
+  lint:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: lint
+          command: npm run lint
   build:
-    executor:
-      name: node/default
+    executor: node/default
     steps:
       - checkout
       - node/install-packages
       - run:
           name: release
           command: npm run semantic-release || true
+
+workflows:
+  develop:
+    jobs:
+      - install-npm-dependencies:
+          filters:
+            branches:
+              only: develop
+      - lint:
+          requires:
+            - install-npm-dependencies
