@@ -17,6 +17,8 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/project
       - run:
           name: lint
           command: npm run lint
