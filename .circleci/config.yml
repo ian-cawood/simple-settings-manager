@@ -22,11 +22,12 @@ jobs:
       - run:
           name: lint
           command: npm run lint
-  build:
+  release:
     executor: node/default
     steps:
       - checkout
-      - node/install-packages
+      - attach_workspace:
+          at: ~/project
       - run:
           name: release
           command: npm run semantic-release || true
@@ -41,3 +42,15 @@ workflows:
       - lint:
           requires:
             - install-npm-dependencies
+  master:
+    jobs:
+      - install-npm-dependencies:
+          filter:
+            branches:
+              only: master
+      - lint:
+          requires:
+            - install-npm-dependencies
+      - release:
+          requires:
+            - lint
