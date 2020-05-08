@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "ci:validate": "circleci config validate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "semantic-release": "semantic-release"
   },
@@ -21,11 +22,12 @@
   "devDependencies": {
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
     "semantic-release": "^17.0.7"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm-p lint ci:validate"
     }
   }
 }
