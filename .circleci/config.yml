@@ -12,7 +12,7 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-            - node-modules
+            - node_modules
   lint:
     executor: node/default
     steps:
