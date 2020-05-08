@@ -10,7 +10,7 @@ jobs:
       - checkout
       - node/install-packages
       - persist_to_workspace:
-          root: /project/
+          root: ~/project
           paths:
             - node-modules
   lint:
