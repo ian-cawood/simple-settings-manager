@@ -45,7 +45,7 @@ workflows:
   master:
     jobs:
       - install-npm-dependencies:
-          filter:
+          filters:
             branches:
               only: master
       - lint:
