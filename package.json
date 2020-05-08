@@ -6,6 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "ci:validate": "circleci config validate",
+    "_git:pre-commit": "run-p lint",
+    "_git:pre-push": "run-p ci:validate test",
     "test": "echo \"Error: no test specified\" && exit 1",
     "semantic-release": "semantic-release"
   },
@@ -27,7 +29,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-p lint ci:validate"
+      "pre-commit": "npm run _git:pre-commit",
+      "pre-push": "npm run _git:pre-push"
     }
   }
 }
