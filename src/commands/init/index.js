@@ -1,6 +1,7 @@
 const handler = require('./init.handler')
 
-exports.command = 'init'
+// this serves as the default command as well
+exports.command = ['init', '$0']
 
 exports.describe = 'initialize settings'
 

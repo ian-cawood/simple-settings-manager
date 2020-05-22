@@ -1,1 +1,7 @@
 node_modules
+
+# Local testing artifacts should not be checked in
+ssm.config.json
+.env*
+.settings*
+.config*
