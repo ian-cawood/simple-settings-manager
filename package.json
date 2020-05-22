@@ -11,6 +11,10 @@
     "test": "mocha \"src/**/*.test.js\"",
     "semantic-release": "semantic-release"
   },
+  "bin": {
+    "ssm": "./index.js",
+    "simple-settings-manager": "./index.js"
+  },
   "author": "Ian Cawood",
   "license": "MIT",
   "dependencies": {
