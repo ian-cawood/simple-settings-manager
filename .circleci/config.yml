@@ -47,9 +47,7 @@ workflows:
       - lint:
           requires:
             - install-npm-dependencies
-      - test:
-          requires:
-            - install-npm-dependencies
+      - node/test
   master:
     jobs:
       - install-npm-dependencies:
@@ -63,4 +61,4 @@ workflows:
       - release:
           requires:
             - lint
-            - test
+            - node/test
