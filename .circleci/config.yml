@@ -9,21 +9,11 @@ executors:
       - image: circleci/node:12.8
 
 jobs:
-  install-npm-dependencies:
-    executor: node
-    steps:
-      - checkout
-      - node/install-packages
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - node_modules
   lint:
     executor: node
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/project
+      - node/install-packages
       - run:
           name: lint
           command: npm run lint
@@ -31,8 +21,7 @@ jobs:
     executor: node
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/project
+      - node/install-packages
       - run:
           name: release
           command: npm run semantic-release || true
@@ -40,24 +29,24 @@ jobs:
 workflows:
   develop:
     jobs:
-      - install-npm-dependencies:
+      - lint:
           filters:
             branches:
               only: develop
-      - lint:
-          requires:
-            - install-npm-dependencies
-      - node/test
+      - node/test:
+          filters:
+            branches:
+              only: develop
   master:
     jobs:
-      - install-npm-dependencies:
+      - lint:
           filters:
             branches:
               only: master
-      - lint:
-          requires:
-            - install-npm-dependencies
-      - node/test
+      - node/test:
+          filters:
+            branches:
+              only: master
       - release:
           requires:
             - lint
