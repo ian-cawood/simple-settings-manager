@@ -3,6 +3,9 @@
   "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "12.18.0"
+  },
   "scripts": {
     "lint": "eslint .",
     "ci:validate": "circleci config validate",
