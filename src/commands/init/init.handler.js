@@ -1,6 +1,6 @@
 const inquirer = require('inquirer')
 
-const promts = require('./promts')
+const prompts = require('./prompts')
 const file = require('../../common/file')
 const json = require('../../common/json')
 const { defaultConfigFile, defaultFileStructure } = require('./constants')
@@ -8,8 +8,8 @@ const { defaultConfigFile, defaultFileStructure } = require('./constants')
 const handler = () => {
   inquirer
     .prompt([
-      promts.baseFileName,
-      promts.stages,
+      prompts.baseFileName,
+      prompts.stages,
     ])
     .then(answers => {
       const { stages, baseFileName } = answers
