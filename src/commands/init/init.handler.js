@@ -14,11 +14,17 @@ const handler = () => {
     ])
     .then(async answers => {
       const { stages, baseFileName } = answers
+
+      // create stages files
       stages.forEach(stage => 
         file.write(`${baseFileName}.${stage}.json`, json.stringifyWith2Spaces(defaultFileStructure))
       )
+      
+      // generate private and public keys
       const { privateKeyArmored, publicKeyArmored } = await crypto.generateECCKeys([{ email: 'test@test.com'}], '')
       console.log(privateKeyArmored)
+
+      // create configFile
       const configFile = {
         ...defaultConfigFile,
         stages,
